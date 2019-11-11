@@ -8,6 +8,7 @@ public class MyNetworkTable {
 
     public MyNetworkTable() {
             NetworkTableInstance inst = NetworkTableInstance.getDefault();
+            inst.startClient("localhost");
             table = inst.getTable("hellowworld");
     }
 

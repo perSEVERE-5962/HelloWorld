@@ -28,5 +28,6 @@ public class MyNetworkTableUnitTest {
         MyNetworkTable myNetworkTable = new MyNetworkTable();
         myNetworkTable.writeString("HelloWorld", HelloWorld.getText());
         assertEquals("HelloWorld!", myNetworkTable.readString("HelloWorld"));
+        while (0==0){}
     }
 }
