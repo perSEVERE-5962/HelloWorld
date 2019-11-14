@@ -1,0 +1,30 @@
+apply plugin: 'java'
+repositories {
+jcenter()
+}
+dependencies {
+compile files("c:/Users/Public/frc2019/lib/wpiutil.jar")
+compile files("c:/Users/Public/frc2019/lib/ntcore.jar")
+compile files("c:/Users/Public/frc2019/lib/ntcore-jni.jar")
+testCompile 'junit:junit:4.12'
+}
+tasks.withType(Test) {
+   testLogging {
+      exceptionFormat "full"
+      events "started", "skipped", "passed", "failed"
+      showStandardStreams true
+   }
+systemProperty "java.library.path", "c:/Users/Public/frc2019/lib"
+}
+task bundleJar (type: Jar){
+   baseName = "helloworld"
+   version = "0.1.0"
+   manifest {
+      attributes(
+         "Main-Class": "hello.HelloWorld"
+      )
+   }
+   from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } 
+   with jar
+}
+jar.dependsOn bundleJar
